@@ -1,0 +1,31 @@
+.search{
+    font-size: 18px;
+    margin-top: 20px;
+    width: 100vw;
+    align-items: center;
+    padding: 0 20%;
+}
+
+input{
+    width: 500px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    border-radius: 15px 0 0 15px;
+    border: none;
+    font-weight: bold;
+}
+
+button{
+    background-color: gold;
+    width: 100px;
+    padding:10px 20px;
+    font-size: bold;
+    color: green;
+    border: 1px solid green;
+    border-radius: 0 15px 15px 0;
+}
+button:active{
+    background-color: white;
+    border: 1px solid gold;
+}

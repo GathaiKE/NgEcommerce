@@ -1,0 +1,28 @@
+<div class="form-container">
+        <div>
+            <img src="https://media.istockphoto.com/id/1225779547/vector/people-keeping-healthy-diet.jpg?s=612x612&w=0&k=20&c=HDnAlcR98KRV1T4Z4D5-gNvbwRAaT9zzR--JSYgzzfI=" alt="">
+        </div>
+    <div >
+        
+        <form [formGroup]="form">
+            <h1>Login</h1>
+            <div  *ngIf="errorMessage" class="error">
+                <span class="error">{{errorMessage}}</span>
+            </div>
+            <div class="input-container">
+                <label for="name">Email</label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="input-container">
+                <label for="name">Password</label>
+                <input type="password"   formControlName="password">
+            </div>
+            <div class="input-container button">
+                <button type="submit" (click)="SubmitForm()"> Login</button>
+            </div>
+            <p>
+                New to Vineyard? <a routerLink="/register" >Sign Up</a> 
+            </p>
+        </form>
+    </div>
+    </div>

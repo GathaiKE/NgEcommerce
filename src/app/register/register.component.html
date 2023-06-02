@@ -1,0 +1,29 @@
+<div class="form-container">
+        <div >
+            <img src="https://media.istockphoto.com/id/1395535082/photo/tropical-fruit-concept.jpg?s=2048x2048&w=is&k=20&c=jZF-YGTczCiHZ_KVn0ajrIKAmwt3EsmrM-1jR9Ow6b8=" alt="Display Image">
+        </div>
+    <div >
+        <form  [formGroup]="form" (ngSubmit)="SubmitForm()" >
+            <h1>Register</h1>
+        <div  *ngIf="errorMessage" >
+            <span class="error">{{errorMessage}}</span>
+        </div>
+            <div class="input-container">
+                <label for="username" >Name</label>
+                <input type="text" formControlName="username">
+            </div>
+            <div class="input-container">
+                <label for="name">Email</label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="input-container">
+                <label for="name" >Password</label>
+                <input type="password"   formControlName="password" >
+            </div>
+            <div class="input-container">
+                <button type="submit"> Sign Up </button>
+            </div>
+            <p>Already a Member ? <a routerLink="/logIn" >login</a> </p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+img{
+    width: 200px;
+    height: 200px;
+}
+.display{
+    display: flex;
+    margin-top: 20px;
+    padding: 5px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.outer{
+    width: 200px;
+    border: 1px green;
+    text-align: center;
+    line-height: 10px;
+    font-weight: bold;
+}
+
+.outer:hover{
+    opacity: 0.9;
+}
+
+
+button{
+    width: 60%;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: gold;
+    padding: 5px;
+}
+
+button:active{
+    color: green;
+    background-color: gold;
+}
+
+.inner{
+    color: #000;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+.inner>p{
+    color: #000;
+    background-color: whitesmoke;
+}
+

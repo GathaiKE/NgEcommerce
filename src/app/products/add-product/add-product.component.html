@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="content">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <label for="name">Name : </label>
+            <input type="text" formControlName="product_name">
+            <label for="product_description">Description : </label>
+            <input type="text" formControlName="product_description">
+            <label for="category">Category : </label>
+                <select id="categories" formControlName="category">
+                    <option value="default">Pick a category</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="meat">Meat</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="cereals">Cereals</option>
+                    <option value="flour">Flour</option>
+                    <option value="fruits">Fruits</option>
+                </select>
+            <label for="image">Image : </label>
+            <input type="text" formControlName="product_image">
+            <label for="price">Price : </label>
+            <input type="text" formControlName="product_price">
+            <button type="submit" class="addBtn">Add Product.</button>
+        </form>
+
+    <div class="product-list" *ngIf="products|async; else noProducts">
+        <div *ngFor="let product of products | async" class="products">
+            <li class="list">
+                <span>{{product.product_name}}</span>
+                <span>{{product.descriptions | short:6}}</span>
+                <span>{{product.product_price | currency:'KSH '}}</span>
+                <button (click)="updateProduct()" class="update">Update</button>
+                <button  class="delete" (click)="deleteProduct(product.product_id)">Delete</button>
+            </li>
+        </div>
+    </div>
+    
+        <ng-template #noProducts>
+            <p><i>No Products!</i></p>
+        </ng-template>
+</div>

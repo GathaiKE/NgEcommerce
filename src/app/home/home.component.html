@@ -1,0 +1,18 @@
+<div class="display" *ngIf="products |async as products; else noProducts">
+    <div *ngFor="let product of products" class="outer">
+        <img src={{product.images}} alt="{{product.product_name}} Image">
+        <div class="inner">
+            <p>{{product.product_name}}</p>
+            <p>{{product.descriptions| short: 7}}</p>
+            <p>{{product.product_price | currency:'KSH '}}</p>
+            <button type="button" (click)="viewDetails()">Details</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProducts>
+    <p><i>Sorry, we have no products available today!</i></p>
+</ng-template>
+
+
+
