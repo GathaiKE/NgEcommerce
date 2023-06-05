@@ -15,4 +15,5 @@ export class AdminService {
     return this.http.post<adminLogInSuccess>('http://localhost:5000/users/admLogin',admin)
   }
 
+  // admin
   }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,14 @@ import { UserOrderComponent } from './user-order/user-order.component';
 import { AdminOrderComponent } from './admin-order/admin-order.component';
 import { CategoryComponent } from './category/category.component';
 import { DisplaySingleProductComponent } from './products/display-single-product/display-single-product.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { productReducer } from './ngrx/Reducers/ProductReducers';
+import { ordersReducer } from './ngrx/Reducers/OrderReducers';
+import { cartReducer } from './ngrx/Reducers/CartReducers';
+import { userReducer } from './ngrx/Reducers/UserReducers';
+import { ProductEffectsService } from './ngrx/Effects/product-effects.service';
 
 
 @NgModule({
@@ -38,7 +46,10 @@ import { DisplaySingleProductComponent } from './products/display-single-product
     UserOrderComponent,
     AdminOrderComponent,
     CategoryComponent,
-    DisplaySingleProductComponent
+    DisplaySingleProductComponent,
+    StoreModule.forRoot({product:productReducer, order:ordersReducer, cart:cartReducer, users:userReducer}),
+    EffectsModule.forRoot([ProductEffectsService]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]

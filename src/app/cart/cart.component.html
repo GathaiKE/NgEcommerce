@@ -1,13 +1,19 @@
-<div class="cart-container">
-    <div class="img">
-        <img src="../../assets/hero.jpeg" alt="product Image">
+<div class="cart-container" *ngIf="cart |async as cartItems; else cartEmpty">
+    <div *ngFor="let c of cartItems">
+        <div class="img">
+            <img src="../../assets/hero.jpeg" alt="product Image">
+        </div>
+        <div class="details">
+            <p>c.</p>
+            <p>Count: {{20}}</p>
+            <p>Unit Price: {{200 | currency:" KSH "}}</p>
+            <p>Total price: {{200 | currency:" KSH "}}</p>
+        </div>
+        <p>Grand total: {{200 | currency:" KSH "}}</p>
+        <button [routerLink]="['/cart']">Checkout</button>
     </div>
-    <div class="details">
-        <p>Mango</p>
-        <p>Count: {{20}}</p>
-        <p>Unit Price: {{200 | currency:" KSH "}}</p>
-        <p>Total price: {{200 | currency:" KSH "}}</p>
-    </div>
-    <p>Grand total: {{200 | currency:" KSH "}}</p>
-    <button>Checkout</button>
 </div>
+
+<ng-template #cartEmpty>
+    <p>Cart is empty!</p>
+</ng-template>

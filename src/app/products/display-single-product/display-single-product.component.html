@@ -1,11 +1,13 @@
-<div class="prod-container">
+<div class="prod-container" *ngIf="product | async as p">
     <div class="prod">
-        <img src="../../../assets/hero.jpeg" alt="Mango Image">
+        <img src={{p.images}} alt="{{p.product_name}} Image">
     </div>
     <div class="prod">
-        <h1>Mango</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laboriosam, minima error sapiente nobis possimus exercitationem mollitia eveniet. Mollitia, sit!</p>
-        <p>{{20000 | currency:" KSH "}}</p>
-        <button type="button">Checkout</button>
+        <h1>{{p.product_name}}</h1>
+        <p>{{p.descriptions}}</p>
+        <p>{{p.product_price| currency:" KSH "}}</p>
+        <button type="button" (click)="addToCart()">Add To Cart</button>
+        <button  [routerLink]="['/add' , p.product_id]"
+            type="submit" class="bg-background text-white w-40 px-8 py-2 rounded " > Update </button>
     </div>
 </div>

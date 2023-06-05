@@ -5,7 +5,12 @@ import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ReactiveFormsMod
 import { ProductsService } from 'src/app/Services/products.service';
 import {ShortPipe} from '../../Pipes/short.pipe'
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import * as ProductActions from '../../ngrx/Actions/ProductActions'
+import { Appstate } from 'src/State/AppState';
+import { getProducts, getSingleProd } from 'src/app/ngrx/Reducers/ProductReducers';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -15,44 +20,50 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit{
-  error!:string | null
-  constructor(private ProductService:ProductsService, private fb:FormBuilder,private http:HttpClient){}
+ 
+  constructor(private store:Store<Appstate>, private route:ActivatedRoute, private productService:ProductsService){}
 
-  products= this.ProductService.getAllProducts()
+  products!:Observable<Product[]>
+  error!:string | null
   form!:FormGroup
+  product_id!:string
+  update=false
 
   ngOnInit(): void {
     this.form=new FormGroup({
       product_name:new FormControl('',Validators.required),
       category: new FormControl('default',Validators.required),
-      product_description: new FormControl ('',Validators.required),
-      product_image:new FormControl ('',Validators.required),
+      descriptions: new FormControl ('',Validators.required),
+      images:new FormControl ('',Validators.required),
       product_price:new FormControl('',[Validators.required,Validators.min(2)])
   })
+  this.products= this.store.select(getProducts)
   }
 
-  onSubmit(){
-      this.ProductService.addProduct(this.form.value).subscribe(
+  updateProduct(product_id:string){
+    this.update=true
+      this.productService.getsingleProduct(product_id).subscribe(
         res=>{
-          res.message
-        }, 
-        err=>{
+          this.form.setValue({
+            product_name:res.product_name,
+            category: res.category,
+            descriptions: res.descriptions,
+            images: res.images,
+            product_price:res.product_price
+          })
+          this.error=null
+        },err=>{
           this.error=err.error.message
         }
       )
   }
 
-  updateProduct(){
-    // this.ProductService.updateProduct(this.form.value,id).subscribe(
-    //   res=>{
-    //     this.error=null
-    //   }
-    // )
-  }
+  onSubmit(){
+      this.store.dispatch(ProductActions.addProduct(this.form.value))
+    }
 
-  deleteProduct(product_id:number){
-    this.ProductService.deleteProduct(product_id).subscribe(
 
-    )
+  deleteProduct(product_id:string){
+    this.store.dispatch(ProductActions.deleteProduct({product_id}))
   }
 }

@@ -1,4 +1,15 @@
 .prod-container{
     display: flex;
-    
+    width: 90%;
+}
+
+.div{
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 70%;
+    height: auto;
+    border: 1px solid gold;
+    border-radius: 5%;
 }

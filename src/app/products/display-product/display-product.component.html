@@ -3,12 +3,11 @@
         <img src={{product.images}} alt="{{product.product_name}} Image" class="product-image">
         <div class="inner">
             <p>{{product.product_name}}</p>
-            <p>{{product.descriptions | short:6}}</p>
-            <!-- <p>{{product.category}}</p> -->
+            <p>{{product.descriptions | short:10}}</p>
             <p>{{product.product_price | currency:'KSH '}}</p>
             <div class="buttons">
-                <button type="button" (click)="updateProduct()">Update</button>
-                <button type="button">Delete</button>
+                <button type="button" (click)="deleteProduct(product.product_id)">Delete</button>
+                <button type="button" (click)="updateProduct(product.product_id)">Update</button>
             </div>
         </div>
     </div>

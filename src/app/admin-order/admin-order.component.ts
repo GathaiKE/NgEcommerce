@@ -14,7 +14,7 @@ import { Product } from '../Interfaces/products-interfaces';
 export class AdminOrderComponent {
   orders!:Product[]
   constructor(private productsService:ProductsService){
-    this.orders = this.productsService.products
+    // this.productsService.get
   }
       
 

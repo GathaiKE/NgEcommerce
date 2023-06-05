@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
-import { AddProductSuccess, DeleteProductSuccess, Product, UpdateProductSuccess } from '../Interfaces/products-interfaces';
+import { AddProduct, AddProductSuccess, DeleteProductSuccess, Product, UpdateProductSuccess } from '../Interfaces/products-interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient) { }
     categories=['All','Drinks','Vegetables','Fruits','Meat','Cereals','Flour']
-    products!:Product[]
-    addProduct(newProduct:Product):Observable<AddProductSuccess>{
+
+    addProduct(newProduct:AddProduct):Observable<AddProductSuccess>{
         return this.http.post<AddProductSuccess>('http://localhost:5000/products/add',newProduct)
     }
-
 
     getAllProducts():Observable<Product[]>{
         return this.http.get<Product[]>('http://localhost:5000/products/getAll')
     }
 
-    getProduct(id:number){
-        return this.http.get<Product[]>(`http://localhost:5000/products/getProduct/${id}`)
+    getsingleProduct(product_id:string){
+        return this.http.get<Product>(`http://localhost:5000/products/getProduct/${product_id}`)
     }
-    updateProduct(updatedProductt:Product[],id:number):Observable<UpdateProductSuccess>{
-        return this.http.put<UpdateProductSuccess>(`http://localhost:5000/products/update/${id}`,updatedProductt)
+    
+    updateProduct(product_id:string,updatedProduct:AddProduct):Observable<UpdateProductSuccess>{
+        return this.http.put<UpdateProductSuccess>(`http://localhost:5000/products/update/${product_id}`,updatedProduct)
 
     }
 
-    deleteProduct(id:number):Observable<DeleteProductSuccess>{
-        return this.http.delete<DeleteProductSuccess>(`http://localhost:5000/products/delete/${id}`)
+    deleteProduct(product_id:string):Observable<DeleteProductSuccess>{
+        return this.http.delete<DeleteProductSuccess>(`http://localhost:5000/products/delete/${product_id}`)
     }
 }

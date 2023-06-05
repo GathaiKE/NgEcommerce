@@ -12,11 +12,19 @@ export class AppComponent {
   title = 'Admin';
 
   constructor(private productsService:ProductsService, public authenticatorService:AuthenticatorService){}
-    // products:Product[]=this.productsService.products
-    categories=this.productsService.categories
 
+    categories=this.productsService.categories
+  show=false
 
     ngOnInit(): void {
     this.productsService.getAllProducts
+}
+
+toggle(){
+  this.show=!this.show
+}
+
+isLoggedIn(){
+  this.authenticatorService.isLoggedin
 }
 }

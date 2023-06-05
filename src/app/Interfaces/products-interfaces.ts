@@ -1,18 +1,17 @@
-// export interface Product{
-//     product_id:number
-//     product_name:string
-//     product_description:string
-//     category:string
-//     product_image:string
-//     product_price:number
-// }
-
-
 export interface Product{
     product_id:string
     product_name:string
     descriptions:string
+    category:string
     images: string
+    product_price:number
+}
+
+export interface AddProduct{
+    product_name:string
+    descriptions:string
+    category:string
+    images:string
     product_price:number
 }
 

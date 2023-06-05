@@ -3,8 +3,8 @@
         <form (ngSubmit)="onSubmit()" [formGroup]="form">
             <label for="name">Name : </label>
             <input type="text" formControlName="product_name">
-            <label for="product_description">Description : </label>
-            <input type="text" formControlName="product_description">
+            <label for="descriptions">Description : </label>
+            <input type="text" formControlName="descriptions">
             <label for="category">Category : </label>
                 <select id="categories" formControlName="category">
                     <option value="default">Pick a category</option>
@@ -15,11 +15,11 @@
                     <option value="flour">Flour</option>
                     <option value="fruits">Fruits</option>
                 </select>
-            <label for="image">Image : </label>
-            <input type="text" formControlName="product_image">
+            <label for="images">Image : </label>
+            <input type="text" formControlName="images">
             <label for="price">Price : </label>
             <input type="text" formControlName="product_price">
-            <button type="submit" class="addBtn">Add Product.</button>
+            <button type="submit" class="addBtn">Submit</button>
         </form>
 
     <div class="product-list" *ngIf="products|async; else noProducts">
@@ -28,7 +28,7 @@
                 <span>{{product.product_name}}</span>
                 <span>{{product.descriptions | short:6}}</span>
                 <span>{{product.product_price | currency:'KSH '}}</span>
-                <button (click)="updateProduct()" class="update">Update</button>
+                <button class="update" (click)="updateProduct(product.product_id)">Update</button>
                 <button  class="delete" (click)="deleteProduct(product.product_id)">Delete</button>
             </li>
         </div>

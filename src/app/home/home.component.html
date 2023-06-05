@@ -5,7 +5,7 @@
             <p>{{product.product_name}}</p>
             <p>{{product.descriptions| short: 7}}</p>
             <p>{{product.product_price | currency:'KSH '}}</p>
-            <button type="button" (click)="viewDetails()">Details</button>
+            <button type="button" routerLink="/product/{{product.product_id}}">Details</button>
         </div>
     </div>
 </div>
